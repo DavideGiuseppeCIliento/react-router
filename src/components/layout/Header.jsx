@@ -2,16 +2,15 @@
 import { NavLink, Link } from "react-router-dom";
 
 // IMPORT COMPONENTS
-import HomePage from "../../pages/HomePage";
 import pages from "../../data/pages";
 
 export default function Header() {
   return (
     <header>
-      <nav classNameName="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <NavLink className="navbar-brand" to="#">
-            Ciao
+            Logo
           </NavLink>
           <button
             className="navbar-toggler"
@@ -49,9 +48,6 @@ export default function Header() {
           </div>
         </div>
       </nav>
-      <NavLink to="/" element={<HomePage />}>
-        Home Page
-      </NavLink>
     </header>
   );
 }
