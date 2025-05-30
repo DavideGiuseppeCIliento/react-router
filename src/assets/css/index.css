@@ -1,14 +1,14 @@
 /* CSS ROOT */
-#root {
+/* #root {
   padding-top: 30px;
   padding-bottom: 30px;
-  /* background-color: #333; */
+  background-color: #333;
 
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
+} */
 
 /* CSS CORNICE COLONNA TABSGRID */
 .bordo-soft {
