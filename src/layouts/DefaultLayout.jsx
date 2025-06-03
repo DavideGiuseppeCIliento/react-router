@@ -10,7 +10,12 @@ export default function DefaultLayout() {
   return (
     <>
       <Header />
-      <Outlet />
+      <div className="container">
+        <div className="row m-5">
+          <Outlet />
+        </div>
+      </div>
+
       <Footer />
     </>
   );
