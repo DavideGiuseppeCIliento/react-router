@@ -1,5 +1,10 @@
+import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 export default function PostCard({ id, title, content, image, tags }) {
   console.log(image);
+  const navigate = useNavigate();
+
   return (
     <div className="col-md-4 mb-4">
       <div className="card h-100 shadow-sm">
@@ -30,8 +35,11 @@ export default function PostCard({ id, title, content, image, tags }) {
             )}
           </div>
 
-          <div className="mt-3 d-flex justify-content-start ">
-            <button className="btn btn-outline-primary btn-sm me-2">
+          <div className="mt-3 d-flex justify-content-start">
+            <button
+              className="btn btn-outline-primary btn-sm me-2"
+              onClick={() => navigate(`/posts/${id}`)}
+            >
               Visualizza
             </button>
             <button className="btn btn-outline-warning btn-sm">Modifica</button>
