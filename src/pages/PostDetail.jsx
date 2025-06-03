@@ -23,7 +23,7 @@ export default function PostDetail() {
 
   useEffect(() => {
     apiRequest();
-  }, []);
+  }, [id]);
 
   if (!post) return <p>Caricamento...</p>;
 
@@ -48,6 +48,20 @@ export default function PostDetail() {
             </p>
           </div>
         </div>
+      </div>
+      <div className="mt-3 d-flex justify-content-end">
+        <button
+          className="btn btn-outline-danger btn-sm me-2"
+          onClick={() => navigate(`/posts/${parseInt(id) - 1}`)}
+        >
+          Precedente
+        </button>
+        <button
+          className="btn btn-outline-success btn-sm me-2"
+          onClick={() => navigate(`/posts/${parseInt(id) + 1}`)}
+        >
+          Successivo
+        </button>
       </div>
     </div>
   );
