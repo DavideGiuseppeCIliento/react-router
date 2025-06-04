@@ -1,45 +1,31 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import PostCard from "./PostCard";
+import { usePostsData } from "../../context/PostsDataContenxt";
 
 export default function PostGrid() {
-  const [posts, setPosts] = useState([]);
-  const navigate = useNavigate();
-
-  const apiRequest = () => {
-    axios
-      .get("http://localhost:3000/posts")
-      .then((res) => {
-        const data = res.data.posts;
-        setPosts(data);
-        console.log(data);
-      })
-      .catch((err) => {
-        console.error("Errore nella richiesta:", err);
-        navigate("/notFound");
-      });
-  };
-
-  useEffect(() => {
-    apiRequest();
-  }, []);
+  const { posts } = usePostsData();
 
   return (
-    <div className="conteiner">
+    <div className="container">
       <div className="row">
-        {posts.map((post) => {
-          return (
-            <PostCard
-              key={post.id}
-              id={post.id}
-              title={post.title}
-              content={post.content}
-              image={post.image}
-              tags={post.tag}
-            />
-          );
-        })}
+        {posts.length > 0 ? (
+          posts.map((post) => {
+            return (
+              <PostCard
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                content={post.content}
+                image={post.image}
+                tags={post.tag}
+              />
+            );
+          })
+        ) : (
+          <div className="text-center">
+            <div className="spinner-border text-primary" role="status" />
+            <p className="mt-2">Caricamento...</p>
+          </div>
+        )}
       </div>
     </div>
   );

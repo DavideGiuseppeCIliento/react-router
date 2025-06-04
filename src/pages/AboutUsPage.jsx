@@ -1,3 +1,3 @@
 export default function AboutUsPage() {
-  return;
+  return "Chi siamo";
 }

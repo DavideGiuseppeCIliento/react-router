@@ -1,6 +1,9 @@
 // IMPORT ROUTER
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// IMPORT CONTEXT
+import { PostDataProvider } from "./context/PostsDataContenxt";
+
 // IMPORT COMPONENTS
 import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
@@ -15,24 +18,25 @@ import PostDetail from "./pages/PostDetail";
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Rotte che in comune hanno lo stesso Layout */}
-        <Route element={<DefaultLayout />}>
-          <Route path={pages.HOME()} element={<HomePage />} />
-          <Route path={pages.ABOUT()} element={<AboutUsPage />} />
-          <Route path={pages.POSTS()} element={<PostListPage />} />
+      <PostDataProvider>
+        <Routes>
+          {/* Rotte che in comune hanno lo stesso Layout */}
+          <Route element={<DefaultLayout />}>
+            <Route path={pages.HOME()} element={<HomePage />} />
+            <Route path={pages.ABOUT()} element={<AboutUsPage />} />
 
-          {/* ROUTE POSTS */}
-          <Route path="/posts">
-            <Route index element={<PostListPage />} />
-            <Route path="create" element={<PostListPage />} />
-            <Route path=":id" element={<PostDetail />} />
+            {/* ROUTE POSTS */}
+            <Route path={pages.POSTS()}>
+              <Route index element={<PostListPage />} />
+              <Route path={pages.POST_CREATE()} element={<PostListPage />} />
+              <Route path={pages.POST_DETAIL()} element={<PostDetail />} />
+            </Route>
+
+            {/* Gestione NOTFOUND */}
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
-
-          {/* Gestione NOTFOUND */}
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </PostDataProvider>
     </BrowserRouter>
   );
 }
